@@ -61,6 +61,7 @@ var (
 	remoteClusters = clustersCount.With(clusterType.Value("remote"))
 )
 
+// haha
 type handler interface {
 	clusterAdded(cluster *Cluster) ComponentConstraint
 	clusterUpdated(cluster *Cluster) ComponentConstraint
