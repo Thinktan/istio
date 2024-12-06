@@ -1185,6 +1185,9 @@ func (s *Server) initMulticluster(args *PilotArgs) {
 		r.QPS = args.RegistryOptions.KubeOptions.KubernetesAPIQPS
 		r.Burst = args.RegistryOptions.KubeOptions.KubernetesAPIBurst
 	})
+	// 配置 XDS 服务的集群列表方法
+	// ListRemoteClusters 返回当前已连接的所有目标集群信息。
+	// 为 XDS 提供实时的多集群状态信息，支持服务发现和跨集群流量路由。
 	s.XDSServer.ListRemoteClusters = s.multiclusterController.ListRemoteClusters
 	s.addStartFunc("multicluster controller", func(stop <-chan struct{}) error {
 		return s.multiclusterController.Run(stop)
